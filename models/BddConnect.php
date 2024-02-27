@@ -18,8 +18,10 @@ class BddConnect{
     }
 
     function insertBdd($param1){
-        $sql = "INSERT INTO `task`(`task`) VALUES ('$param1')";
-        $this->connexion->query($sql);
+        $sql = "INSERT INTO `task`(`task`) VALUES (:task)";
+        $stmt = $this->connexion->prepare($sql);
+        $stmt->bindParam(':task', $param1, PDO::PARAM_STR);
+        $stmt->execute();
         echo "data bien ajouté à la bdd";
         echo '<br>';
     }

@@ -13,23 +13,15 @@ class Controller {
         $data = $conn->readAll();
         require_once "views/tableau.php";
     }
-
     function addTask(){
         $conn = new BddConnect;
         $conn->insertBdd($_POST['task']);
     }
     function deleteTask(){
-        $deleteIdTask = $_POST["idTask"];
+        $deleteIdTask = htmlspecialchars($_POST["idTask"]);
         $conn = new BddConnect;
         $conn->delete($deleteIdTask);
     }
-    // function UpdateTask(){
-    //     require_once "views/tableau.php";
-    //     $updateTask = $_POST["taskName"];
-    //     $idTask = $_POST["idTask"];
-    //     $conn = new BddConnect;
-    //     $conn->update($updateTask, $idTask);
-    // }
 }
 
 

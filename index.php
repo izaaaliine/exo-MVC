@@ -1,5 +1,6 @@
 <?php 
-
+ob_start();
+ob_clean();
 require_once "controllers/Controller.php";
 
 
@@ -11,12 +12,15 @@ $controller->affichageTask();
 
 if (isset($_POST['submit'])){
     $controller->addTask();
+    header("Location: http://localhost/task/");
 }
 
 if (isset($_GET['type']) && $_GET['type'] == "supprimer") {
     $controller->deleteTask();
     header("Location: http://localhost/task/");
 }
+
+
 
 ?>
 
